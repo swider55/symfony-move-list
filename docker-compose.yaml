@@ -1,0 +1,10 @@
+version: '1'
+
+services:
+    web:
+        container_name: Symfony
+        build: ./
+        volumes:
+            - .:/var/www/
+        ports:
+            - "8000:8000"

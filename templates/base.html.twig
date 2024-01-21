@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% if error is defined %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form id="movieForm" action="{{ path('add_movie') }}" method="post">
+            Title*: <input type="text" id="title" name="title" ><br>
+            Director name*: <input type="text" id="director_name" name="director_name" ><br>
+            Director surname*: <input type="text" id="director_surname" name="director_surname"><br>
+            <input type="submit" value="Add movie">
+        </form>
+        <ul> 
+            {% for movie in movieList %} 
+                <li> 
+                    Title: {{ movie.title }} <br>
+                    Director: {{ movie.director.name }} {{ movie.director.surname }}
+                </li> 
+        {% endfor %} 
+        </ul>
+    </body>
+</html>
