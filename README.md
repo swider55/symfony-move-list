@@ -16,7 +16,7 @@ Before you start, make sure you have the following installed:
    First, clone the repository from GitHub to your local machine:
 
    ```console
-   git clone [Your-Repository-URL]
+   git clone https://github.com/swider55/symfony-move-list.git
     ```
 
 2. **Install Dependencies**
