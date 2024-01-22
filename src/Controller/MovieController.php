@@ -16,6 +16,12 @@ class MovieController extends AbstractController
     #[Route('/', name: 'home_page')]
     public function homepage(EntityManagerInterface $entityManager): Response
     {
+        return $this->redirectToRoute('get_movie');
+    }
+
+    #[Route('/movie', name: 'get_movie', methods: ['GET'])]
+    public function getMovies(EntityManagerInterface $entityManager): Response
+    {
         $movieList = $entityManager->getRepository(Movie::class)->findAll();
 
         return $this->render('base.html.twig', [
@@ -23,7 +29,7 @@ class MovieController extends AbstractController
         ]);
     }
 
-    #[Route('/add', name: 'add_movie', methods: ['POST'])]
+    #[Route('/movie', name: 'add_movie', methods: ['POST'])]
     public function addMovie(#[MapRequestPayload] MovieDTO $userDto, EntityManagerInterface $entityManager): Response
     {
         $directorRepository = $entityManager->getRepository(Director::class);
